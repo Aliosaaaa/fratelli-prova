@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fratelli Maltagliati | Custodi dei Castagneti Toscani</title>
+    <meta name="description" content="Scopri la farina di castagne artigianale dei Fratelli Maltagliati. Recuperiamo i boschi antichi della Toscana per portare sulla tua tavola una tradizione dimenticata.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Fratelli Maltagliati | Farina di Castagne & Tradizione">
+    <meta property="og:description" content="Dall'albero alla tavola: seguiamo ogni passo della filiera per una farina di castagne di altissima qualità.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&q=80&w=1200">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #4a5d4e; /* Verde Bosco */
+            --secondary: #8b5a2b; /* Marrone Castagna */
+            --accent: #d2b48c; /* Crema/Tan */
+            --bg-light: #fdfaf5;
+            --text-dark: #2c241e;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(253, 250, 245, 0.95);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 2px;
+            background: var(--text-dark);
+            transition: 0.3s;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            border-color: white;
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        .btn-dark:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* --- Sections General --- */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            width: 50%;
+            height: 3px;
+            background: var(--secondary);
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+        }
+
+        /* --- Chi Siamo --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 20px 20px 0 var(--accent);
+        }
+
+        /* --- Servizi --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        /* --- Testimonianze --- */
+        .testimonials {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-item {
+            font-style: italic;
+            position: relative;
+            padding: 20px;
+        }
+
+        .testimonial-item p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-style: normal;
+            display: block;
+            color: var(--accent);
+        }
+
+        /* --- Contatti Form Section --- */
+        .contact-section {
+            background-color: var(--bg-light);
+            background-image: url('https://images.unsplash.com/photo-1508349937151-22b68b72d5b1?auto=format&fit=crop&q=80&w=1600'); /* Immagine foglie di castagno/autunnali */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            padding: 120px 0; /* Aumentato padding per dare respiro */
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(253, 250, 245, 0.95); /* Sfondo leggermente trasparente per leggibilità */
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px); /* Effetto sfocato sullo sfondo */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background-color: #fff;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .contact-form button {
+            width: 100%;
+            border: none;
+            margin-top: 10px;
+        }
+
+        #form-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .message-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        /* --- CTA Finale --- */
+        .final-cta {
+            text-align: center;
+            background: linear-gradient(rgba(74, 93, 78, 0.9), rgba(74, 93, 78, 0.9)), 
+                        url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            color: white;
+            padding: 80px 0;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--text-dark);
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* --- Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 70px;
+                height: calc(100vh - 70px);
+                background: var(--bg-light);
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding-top: 50px;
+                transition: 0.5s;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .contact-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">FRATELLI MALTAGLIATI</a>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#chi-siamo">La Nostra Storia</a></li>
+                    <li><a href="#servizi">Il Lavoro</a></li>
+                    <li><a href="#testimonianze">Dicono di Noi</a></li>
+                    <li><a href="#contatti">Unisciti a Noi</a></li>
+                </ul>
+                <div class="burger" id="burger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container hero-content">
+            <h1 class="fade-in">Un ponte tra il bosco antico e la tua tavola.</h1>
+            <p class="fade-in">Custodi dei castagneti toscani, trasformiamo frutti selvatici in farina preziosa attraverso gesti lenti e tradizioni vive.</p>
+            <a href="#chi-siamo" class="btn fade-in">Scopri la nostra storia</a>
+        </div>
+    </section>
+
+    <section id="chi-siamo">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text fade-in">
+                    <h3>Siamo l'anello di congiunzione tra natura e comunità.</h3>
+                    <p>Siamo due fratelli legati da una passione profonda per la nostra terra. Non siamo solo produttori: siamo custodi. Ogni giorno lavoriamo per salvare i castagneti abbandonati della Toscana, preservando la biodiversità e la cultura di questi luoghi magici.</p>
+                    <p style="margin-top: 15px;">Le nostre castagne nascono in boschi che i nostri nonni già conoscevano. Le raccogliamo a mano, una ad una, perché crediamo che solo il tocco umano possa rispettare la delicatezza di questo frutto.</p>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&q=80&w=800" alt="Castagneto Toscano">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" style="background-color: #f4f1ea;">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Cosa Facciamo</h2>
+                <p>La nostra filiera è un atto di amore per il territorio.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <span class="service-icon">🌳</span>
+                    <h3>Recupero Boschi</h3>
+                    <p>Ripuliamo e curiamo i castagneti storici abbandonati, ridando vita a ecosistemi vitali per l'Appennino.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-icon">🖐️</span>
+                    <h3>Raccolta Manuale</h3>
+                    <p>Niente macchine pesanti. Raccogliamo i frutti a mano nel rispetto del terreno e della pianta.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-icon">⚙️</span>
+                    <h3>Molitura Lenta</h3>
+                    <p>Utilizziamo il nostro mulino tradizionale per una macinatura a pietra che preserva ogni aroma.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-icon">🏫</span>
+                    <h3>Cultura & Scuola</h3>
+                    <p>Ospitiamo scolaresche e scout per tramandare la conoscenza del bosco e delle sue tradizioni.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonianze" class="testimonials">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2 style="color: white;">Voci dal Bosco</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-item fade-in">
+                    <p>"La loro farina ha un profumo che non trovavo da anni. Si sente il fumo del metato e la dolcezza della castagna vera."</p>
+                    <span class="testimonial-author">— Marco G., Chef Agriturismo</span>
+                </div>
+                <div class="testimonial-item fade-in">
+                    <p>"Visitare il loro mulino con i bambini è stata un'esperienza magica. I Fratelli Maltagliati vendono cultura, non solo cibo."</p>
+                    <span class="testimonial-author">— Laura P., Insegnante</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuova Sezione Acquisizione Contatti -->
+    <section id="contatti" class="contact-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Entra in Contatto</h2>
+                <p>Vuoi saperne di più sui nostri progetti o ricevere la farina a casa? Lasciaci i tuoi recapiti.</p>
+            </div>
+            <div class="contact-container fade-in">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Indirizzo Email</label>
+                        <input type="email" id="email" name="email" placeholder="esempio@mail.it" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Numero di Telefono</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+39 3XX XXXXXXX" required>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Invia i miei dati</button>
+                    <div id="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="fade-in">Adotta un Castagno</h2>
+            <p class="fade-in" style="margin-bottom: 30px;">Aiutaci a pulire e recuperare il nostro patrimonio forestale. Diventa parte della nostra storia.</p>
+            <a href="#contatti" class="btn fade-in">Scopri come fare</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Fratelli Maltagliati</h4>
+                    <p>Azienda Agricola e Molitura Tradizionale.<br>Pescia, Toscana, Italia.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Link Utili</h4>
+                    <ul>
+                        <li><a href="#chi-siamo">Chi Siamo</a></li>
+                        <li><a href="#servizi">I Nostri Servizi</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Seguici</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Fratelli Maltagliati. Tutti i diritti riservati. "Castagna Libera Tutti"</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('nav-links');
+        
+        burger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Animate Burger
+            burger.classList.toggle('toggle');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Fade-in Animation on Scroll
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Smooth Scroll Fix
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form Submission Logic
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulazione invio dati
+            const name = document.getElementById('name').value;
+            
+            formMessage.textContent = `Grazie ${name}! Abbiamo ricevuto i tuoi contatti. Ti chiameremo presto dal bosco.`;
+            formMessage.className = 'message-success';
+            formMessage.style.display = 'block';
+            
+            // Reset del form
+            contactForm.reset();
+            
+            // Nascondi messaggio dopo 5 secondi
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
