@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fratelli Maltagliati | Custodi dei Castagneti Toscani</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="description" content="Scopri la farina di castagne artigianale dei Fratelli Maltagliati. Recuperiamo i boschi antichi della Toscana per portare sulla tua tavola una tradizione dimenticata.">
     
     <!-- Open Graph Tags -->
@@ -692,26 +693,43 @@
         });
 
         // Form Submission Logic
+        const GOOGLE_SCRIPT_URL = 'INCOLLA_QUI_IL_TUO_URL';
+
         const contactForm = document.getElementById('contactForm');
         const formMessage = document.getElementById('form-message');
 
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Simulazione invio dati
+
             const name = document.getElementById('name').value;
-            
-            formMessage.textContent = `Grazie ${name}! Abbiamo ricevuto i tuoi contatti. Ti chiameremo presto dal bosco.`;
-            formMessage.className = 'message-success';
-            formMessage.style.display = 'block';
-            
-            // Reset del form
-            contactForm.reset();
-            
-            // Nascondi messaggio dopo 5 secondi
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 5000);
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Invio in corso...';
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({ name, email, phone }),
+            })
+            .then(res => res.json())
+            .then(data => {
+                formMessage.textContent = `Grazie ${name}! Abbiamo ricevuto i tuoi contatti. Ti chiameremo presto dal bosco.`;
+                formMessage.className = 'message-success';
+                formMessage.style.display = 'block';
+                contactForm.reset();
+                setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+            })
+            .catch(() => {
+                formMessage.textContent = 'Errore durante l\'invio. Riprova più tardi.';
+                formMessage.className = 'message-error';
+                formMessage.style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Invia i miei dati';
+            });
         });
     </script>
 </body>
